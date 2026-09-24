@@ -93,3 +93,14 @@ Result screen par ek interactive **Info / WHO Standards** button diya gaya hai j
   4. **Obese**: $\ge 30.0$
 - **Live User Highlight**: User ka current BMI range table mein glowing badge ke sath highlight hota hai.
 - **Medical Note**: Athletes aur muscle mass limitations ki wazahat.
+
+---
+
+## 7. BMI History & Recharts Trends Visualization
+
+BMI History modal ke andar ek sleek **Trends** visualizer add kiya gaya hai:
+- **Library**: `recharts` (`ResponsiveContainer`, `LineChart`, `Line`, `XAxis`, `YAxis`, `Tooltip`, `ReferenceLine`).
+- **Dark Theme & MIUI Palette**: Pitch black card background (`#09090b`), Xiaomi Signature Orange line (`#ff6900`), soft grid lines, dynamic custom dark tooltip.
+- **Normal Range Reference Lines**: Emerald green dashed boundaries (`18.5` aur `24.0`) user ko unke healthy weight goals ke hisaab se track karne mein madad dete hain.
+- **Summary Metrics**: Latest BMI, Min / Max range, aur Net Change indicator (+/- trend).
+- **Tab Navigation**: Trends graph aur detailed individual records ke darmiyan one-tap seamless toggle.
