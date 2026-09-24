@@ -72,10 +72,9 @@ Screenshots ke data analysis se Xiaomi Calculator ka exact mathematical formula 
 
 ## 5. Responsive & PWA Execution for Redmi 13C
 
-- **Redmi 13C Mobile Screen**: Full viewport immersion (`h-[100dvh]`), native header with back button, large tactile touch targets, Xiaomi-standard keypad / input interactions, PWA install prompt button.
-- **Laptop & Desktop Screens**: 
-  - Centered flagship mobile preview frame (390px - 440px) with sleek outer ambiance.
-  - Optional expanded dual-panel view on wide monitors: Left panel has input sliders/fields, Right panel shows instant live interactive gauge and detailed health insights.
+- **Redmi 13C Mobile Screen**: Full viewport immersion (`min-h-[100dvh]`), native header, large tactile touch targets, Xiaomi-standard keypad / input interactions, PWA install prompt button.
+- **Laptop & Desktop Screens**: Clean, centered, responsive web app container (`max-w-xl mx-auto`) with subtle ambient dark lighting. Har device screen (mobile, tablet, laptop, PC) par naturally fit hota hai bina kisi artificial device preview buttons ya fake mobile frame borders ke.
+- **Gender Section Alignment**: Gender label aur Male/Female selection squircle cards right-aligned hain, jo Height aur Weight ke unit switches ke sath vertically perfectly synchronized hain.
 - **PWA Features**:
   - `manifest.json` configured with `display: "standalone"`, `theme_color: "#000000"`, `background_color: "#000000"`.
   - Service worker precaching for complete offline capability (bina internet ke bhi chalega).
