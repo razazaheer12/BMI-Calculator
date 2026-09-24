@@ -169,7 +169,7 @@ export const BMIInputScreen: React.FC<BMIInputScreenProps> = ({
   };
 
   return (
-    <div className="flex flex-col min-h-full h-full bg-black text-white px-6 pt-3 pb-8 select-none">
+    <div className="flex flex-col flex-1 min-h-[100dvh] bg-black text-white px-5 sm:px-7 pt-3 pb-8 select-none">
       {/* Top Bar on Main Screen: Root screen without back arrow */}
       <div className="flex items-center justify-between py-3 mb-6">
         <div>
@@ -201,7 +201,7 @@ export const BMIInputScreen: React.FC<BMIInputScreenProps> = ({
           )}
 
           {/* Row 1: Age & Gender */}
-          <div className="grid grid-cols-2 gap-6 items-start">
+          <div className="grid grid-cols-2 gap-4 sm:gap-6 items-start">
             {/* Age Column */}
             <div className="flex flex-col">
               <span className="text-sm font-normal text-neutral-400 mb-2">Age</span>
@@ -218,24 +218,25 @@ export const BMIInputScreen: React.FC<BMIInputScreenProps> = ({
               </div>
             </div>
 
-            {/* Gender Column */}
+            {/* Gender Column - Neatly aligned on the right, matching unit toggle switches below */}
             <div className="flex flex-col items-end">
-              <span className="text-sm font-normal text-neutral-400 mb-2 self-start pl-1">
-                Gender: <span className="text-neutral-200 capitalize">{gender}</span>
-              </span>
+              <div className="flex items-center justify-end gap-1.5 mb-2 text-sm text-neutral-400 whitespace-nowrap">
+                <span>Gender:</span>
+                <span className="text-neutral-200 capitalize font-medium">{gender}</span>
+              </div>
               <div className="flex items-center gap-2.5">
                 {/* Male Squircle */}
                 <button
                   type="button"
                   onClick={() => handleGenderToggle('male')}
                   aria-label="Select Male"
-                  className={`w-14 h-14 rounded-2xl flex items-center justify-center transition-all cursor-pointer ${
+                  className={`w-13 h-13 sm:w-14 sm:h-14 rounded-2xl flex items-center justify-center transition-all cursor-pointer ${
                     gender === 'male'
-                      ? 'bg-[#262628] ring-1 ring-orange-500/30'
-                      : 'bg-[#1e1e20] hover:bg-[#262628]'
+                      ? 'bg-[#262628] ring-1 ring-orange-500/40 text-orange-400 shadow-sm'
+                      : 'bg-[#18181a] hover:bg-[#222225] border border-neutral-800/80 text-neutral-500'
                   }`}
                 >
-                  <MaleIcon active={gender === 'male'} className="w-8 h-8" />
+                  <MaleIcon active={gender === 'male'} className="w-7 h-7 sm:w-8 sm:h-8" />
                 </button>
 
                 {/* Female Squircle */}
@@ -243,13 +244,13 @@ export const BMIInputScreen: React.FC<BMIInputScreenProps> = ({
                   type="button"
                   onClick={() => handleGenderToggle('female')}
                   aria-label="Select Female"
-                  className={`w-14 h-14 rounded-2xl flex items-center justify-center transition-all cursor-pointer ${
+                  className={`w-13 h-13 sm:w-14 sm:h-14 rounded-2xl flex items-center justify-center transition-all cursor-pointer ${
                     gender === 'female'
-                      ? 'bg-[#262628] ring-1 ring-orange-500/30'
-                      : 'bg-[#1e1e20] hover:bg-[#262628]'
+                      ? 'bg-[#262628] ring-1 ring-orange-500/40 text-orange-400 shadow-sm'
+                      : 'bg-[#18181a] hover:bg-[#222225] border border-neutral-800/80 text-neutral-500'
                   }`}
                 >
-                  <FemaleIcon active={gender === 'female'} className="w-8 h-8" />
+                  <FemaleIcon active={gender === 'female'} className="w-7 h-7 sm:w-8 sm:h-8" />
                 </button>
               </div>
             </div>
