@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1c1c1e" />
+      <stop offset="100%" stop-color="#0a0a0c" />
+    </linearGradient>
+    <linearGradient id="orangeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ff8533" />
+      <stop offset="100%" stop-color="#f56000" />
+    </linearGradient>
+    <linearGradient id="meterGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#38bdf8" />
+      <stop offset="35%" stop-color="#22c55e" />
+      <stop offset="70%" stop-color="#f59e0b" />
+      <stop offset="100%" stop-color="#f97316" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Base Background -->
+  <rect width="512" height="512" rx="112" fill="url(#bgGrad)" />
+  <rect width="504" height="504" x="4" y="4" rx="108" fill="none" stroke="#2c2c2e" stroke-width="4" />
+  
+  <!-- Gauge Arc -->
+  <path d="M 120 330 A 150 150 0 1 1 392 330" fill="none" stroke="url(#meterGrad)" stroke-width="32" stroke-linecap="round" />
+  
+  <!-- Center Scale Plate -->
+  <circle cx="256" cy="256" r="90" fill="#141416" stroke="#2a2a2d" stroke-width="6" />
+  
+  <!-- BMI Text in Center -->
+  <text x="256" y="244" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="34" font-weight="900" fill="#ffffff" text-anchor="middle" letter-spacing="1">BMI</text>
+  <text x="256" y="278" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="16" font-weight="600" fill="#ff7a00" text-anchor="middle" letter-spacing="3">MIUI</text>
+  
+  <!-- Needle Indicator -->
+  <circle cx="256" cy="180" r="10" fill="#ff7a00" />
+  <path d="M 252 210 L 256 160 L 260 210 Z" fill="#ff7a00" />
+  
+  <!-- Lower Weight / Height symbols -->
+  <circle cx="200" cy="380" r="14" fill="#38bdf8" opacity="0.9" />
+  <circle cx="256" cy="380" r="14" fill="#22c55e" opacity="0.9" />
+  <circle cx="312" cy="380" r="14" fill="#f97316" opacity="0.9" />
+</svg>

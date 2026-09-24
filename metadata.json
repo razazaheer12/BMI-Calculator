@@ -1,0 +1,6 @@
+{
+  "name": "MIUI BMI Calculator",
+  "description": "A sleek, native-feel BMI calculator inspired by Xiaomi MIUI / HyperOS with real-time analysis and PWA support.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
