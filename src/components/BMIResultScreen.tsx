@@ -96,7 +96,7 @@ export const BMIResultScreen: React.FC<BMIResultScreenProps> = ({
   const badgeStyle = getBadgeStyle();
 
   return (
-    <div className="flex flex-col min-h-full h-full bg-black text-white px-6 pt-3 pb-8 select-none">
+    <div className="flex flex-col flex-1 min-h-[100dvh] bg-black text-white px-5 sm:px-7 pt-3 pb-8 select-none">
       {/* Top Bar with Back Arrow & Title */}
       <div className="flex items-center justify-between py-3 mb-8">
         <div className="flex items-center gap-4">
