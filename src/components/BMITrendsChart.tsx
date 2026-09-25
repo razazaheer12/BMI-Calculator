@@ -22,23 +22,28 @@ export const BMITrendsChart: React.FC<BMITrendsChartProps> = ({ history }) => {
   if (history.length === 0) return null;
 
   // Chronological order: oldest to newest for the timeline
+  // Each entry is guaranteed a unique 'id' for Recharts XAxis dataKey binding
   const chronologicalData = [...history].reverse().map((item, index) => {
-    // Short date formatting
+    const pointId = item.id || `bmi-point-${item.timestamp || index}-${index}`;
+
+    // Short date formatting for XAxis tick display
     let shortDate = item.date;
     try {
       const d = new Date(item.timestamp || item.date);
       if (!isNaN(d.getTime())) {
         shortDate = d.toLocaleDateString(undefined, { month: 'short', day: 'numeric' });
+      } else if (item.date) {
+        shortDate = item.date.split(',')[0] || item.date;
       }
     } catch {
-      shortDate = item.date;
+      shortDate = item.date || `#${index + 1}`;
     }
 
     return {
-      id: item.id,
+      id: pointId,
       index: index + 1,
       label: shortDate || `#${index + 1}`,
-      date: item.date,
+      date: item.date || shortDate,
       bmi: Number(item.bmi.toFixed(1)),
       weightKg: item.weightKg,
       heightCm: item.heightCm,
@@ -140,8 +145,13 @@ export const BMITrendsChart: React.FC<BMITrendsChartProps> = ({ history }) => {
               <LineChart data={chronologicalData} margin={{ top: 10, right: 15, left: -20, bottom: 0 }}>
                 <CartesianGrid stroke="#222227" strokeDasharray="3 3" vertical={false} />
                 
+                {/* Unique key 'id' ensures each point has a distinct coordinate and avoids duplicate tooltip data */}
                 <XAxis
-                  dataKey="label"
+                  dataKey="id"
+                  tickFormatter={(id: string) => {
+                    const item = chronologicalData.find((d) => d.id === id);
+                    return item ? item.label : '';
+                  }}
                   stroke="#52525b"
                   tick={{ fill: '#71717a', fontSize: 11 }}
                   tickLine={false}
@@ -157,7 +167,11 @@ export const BMITrendsChart: React.FC<BMITrendsChartProps> = ({ history }) => {
                   tickCount={5}
                 />
 
-                <Tooltip content={<CustomTooltip />} />
+                <Tooltip
+                  content={<CustomTooltip />}
+                  cursor={{ stroke: '#ff6900', strokeWidth: 1, strokeDasharray: '3 3', strokeOpacity: 0.5 }}
+                  isAnimationActive={false}
+                />
 
                 {/* Normal BMI bounds (18.5 to 24.0) */}
                 {showNormalRange && (
@@ -206,7 +220,7 @@ export const BMITrendsChart: React.FC<BMITrendsChartProps> = ({ history }) => {
                     stroke: '#ff6900',
                     strokeWidth: 3,
                   }}
-                  animationDuration={600}
+                  isAnimationActive={false}
                 />
               </LineChart>
             </ResponsiveContainer>
@@ -217,39 +231,42 @@ export const BMITrendsChart: React.FC<BMITrendsChartProps> = ({ history }) => {
   );
 };
 
-// Custom dark-themed MIUI Tooltip
+// Custom dark-themed MIUI Tooltip that dynamically extracts the hovered point's specific data
 const CustomTooltip = ({ active, payload }: any) => {
-  if (active && payload && payload.length) {
-    const data = payload[0].payload;
-    return (
-      <div className="bg-neutral-950/95 border border-neutral-800 rounded-xl p-2.5 shadow-2xl backdrop-blur-md text-xs min-w-[140px] animate-in fade-in zoom-in-95 duration-150">
-        <div className="flex items-center justify-between gap-2 border-b border-neutral-900 pb-1.5 mb-1.5">
-          <span className="text-neutral-400 font-medium text-[11px]">{data.date}</span>
-          <span
-            className="text-[10px] px-1.5 py-0.2 rounded font-semibold"
-            style={{
-              backgroundColor: `${data.categoryColor}22`,
-              color: data.categoryColor,
-            }}
-          >
-            {data.categoryLabel}
-          </span>
-        </div>
-        <div className="flex items-baseline justify-between gap-4">
-          <span className="text-neutral-400">BMI:</span>
-          <span className="text-white font-bold text-sm">{data.bmi}</span>
-        </div>
-        <div className="flex items-baseline justify-between gap-4 mt-0.5">
-          <span className="text-neutral-400">Weight:</span>
-          <span className="text-neutral-200">{data.weightKg} kg</span>
-        </div>
-        <div className="flex items-baseline justify-between gap-4 mt-0.5">
-          <span className="text-neutral-400">Height:</span>
-          <span className="text-neutral-200">{data.heightCm} cm</span>
-        </div>
-      </div>
-    );
-  }
-  return null;
-};
+  if (!active || !payload || !payload.length) return null;
 
+  // Extract the specific hovered point's data payload dynamically
+  const activePayload = payload.find((p: any) => p.dataKey === 'bmi') || payload[0];
+  const data = activePayload?.payload;
+
+  if (!data) return null;
+
+  return (
+    <div className="bg-neutral-950/95 border border-neutral-800 rounded-xl p-2.5 shadow-2xl backdrop-blur-md text-xs min-w-[140px] pointer-events-none z-50">
+      <div className="flex items-center justify-between gap-2 border-b border-neutral-900 pb-1.5 mb-1.5">
+        <span className="text-neutral-400 font-medium text-[11px]">{data.date || data.label}</span>
+        <span
+          className="text-[10px] px-1.5 py-0.5 rounded font-semibold"
+          style={{
+            backgroundColor: `${data.categoryColor}22`,
+            color: data.categoryColor,
+          }}
+        >
+          {data.categoryLabel}
+        </span>
+      </div>
+      <div className="flex items-baseline justify-between gap-4">
+        <span className="text-neutral-400">BMI:</span>
+        <span className="text-white font-bold text-sm">{data.bmi}</span>
+      </div>
+      <div className="flex items-baseline justify-between gap-4 mt-0.5">
+        <span className="text-neutral-400">Weight:</span>
+        <span className="text-neutral-200">{data.weightKg} kg</span>
+      </div>
+      <div className="flex items-baseline justify-between gap-4 mt-0.5">
+        <span className="text-neutral-400">Height:</span>
+        <span className="text-neutral-200">{data.heightCm} cm</span>
+      </div>
+    </div>
+  );
+};
