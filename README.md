@@ -16,7 +16,7 @@
 
 ---
 
-## 🌟 Overview & Design Philosophy
+## 🌟 Overview 
 
 A sleek, **Xiaomi MIUI / HyperOS-inspired** BMI calculator that feels native on every device. Every interaction is crafted for fluidity — smooth range sliders, animated screen transitions powered by **Motion (Framer Motion)**, ambient glow lighting, and dynamic health badges that instantly color-code your result.
 
