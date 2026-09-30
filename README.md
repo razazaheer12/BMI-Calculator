@@ -2,8 +2,6 @@
 
 # 📊 MIUI BMI Calculator & Health Tracker
 
-### Progressive Web App (PWA) & Visual Trend Analytics
-
 [![Live Demo](https://img.shields.io/badge/Live_Demo-Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://bmi-ui-calculator.vercel.app/)
 [![GitHub Repo](https://img.shields.io/badge/GitHub-Repository-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/razazaheer12/BMI-Calculator)
 [![License: MIT](https://img.shields.io/badge/License-MIT-orange.svg?style=for-the-badge)](LICENSE)
@@ -14,8 +12,6 @@
 
 </div>
 
----
-
 ## 🌟 Overview 
 
 A sleek, **Xiaomi MIUI / HyperOS-inspired** BMI calculator that feels native on every device. Every interaction is crafted for fluidity — smooth range sliders, animated screen transitions powered by **Motion (Framer Motion)**, ambient glow lighting, and dynamic health badges that instantly color-code your result.
@@ -23,6 +19,9 @@ A sleek, **Xiaomi MIUI / HyperOS-inspired** BMI calculator that feels native on 
 The app ships in MIUI's signature **dark aesthetic** with a pure-black canvas, vibrant accent gradients, and a **glassmorphism** surface language.
 
 > 🔒 **Privacy-First, Zero Backend** — There is no server, no database, and no account. All calculations and history are stored **exclusively in your browser's LocalStorage**. Your health data never leaves your device.
+
+<img width="944" height="437" alt="image" src="https://github.com/user-attachments/assets/eb3e4218-4e01-4fb6-99aa-f35ac556b09f" />
+
 
 ---
 
